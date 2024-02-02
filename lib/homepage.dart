@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdfcreator/questions.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -15,7 +16,9 @@ class Homepage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions()));
+            },
             child: Card(
               child: ListTile(
                 title: Text('1 Soru'),
