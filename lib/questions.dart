@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
@@ -11,6 +10,7 @@ import 'package:pdfcreator/question_model.dart';
 class Questions extends StatelessWidget {
    Questions({Key? key}) : super(key: key);
   List<QuestionModel> addPdfList=[];
+  int curIndex=0;
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,20 @@ class Questions extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
                 physics: ScrollPhysics(),
-                itemCount: questions.length,
+                itemCount: questionList.length,
                 itemBuilder: (context, int index){
               return ListTile(
-                subtitle: Text(questions[index]),
+                subtitle: Text(questionList[index].question),
                 trailing: IconButton(onPressed: (){
                   addPdfList.add(questionList[index]);
                   print(addPdfList);
+                  curIndex=index;
                 }, icon: Icon(Icons.add_circle, color: Colors.green,)),
               );
             }),
 
           ElevatedButton(onPressed: ()async{
-          await  createPDF(addPdfList);
+          await  createPDF(addPdfList, curIndex);
           }, child: Text('PDF Oluştur'))
         ],
       ),
@@ -45,37 +46,38 @@ class Questions extends StatelessWidget {
 }
 
 
-List<String> questions=["Okuduğunuz şiirin kahramanı kimdir? (10 Puan)",
-"Sizce, ağaç kitaba dönüşmekten memnun mudur? Bunu şiirdeki hangi ifadelerden çıkarıyorsunuz? (10 Puan)",
-"“Kitabın Serüveni” şiiri ile ilgili iki soru yazınız. (20 Puan,  10+10)"];
 
 List<QuestionModel> questionList=[
   QuestionModel(question: "Kitabın Serüveni” şiiri ile ilgili iki soru yazınız. (20 Puan,  10+10)"),
+  QuestionModel(imagePath:'assets/firsat.png',question: "Takaşi takatako"),
   QuestionModel(premise: "Öncül Laaaaa", question: "Okuduğunuz şiirin kahramanı kimdir? (10 Puan)"),
   QuestionModel(imagePath: "assets/pic.JPG",question: "Sizce, ağaç kitaba dönüşmekten memnun mudur? Bunu şiirdeki hangi ifadelerden çıkarıyorsunuz? (10 Puan)",
   )
 ];
 
+
 Future<pw.Font> loadFont() async {
   final fontData = await rootBundle.load('assets/times.ttf');
   return pw.Font.ttf(fontData.buffer.asByteData());
 }
-Future<Widget> imageLoad(imagePath)async{
-  final ByteData image= await rootBundle.load('assets$imagePath');
-  Uint8List imageData= (image).buffer.asUint8List();
 
+
+
+
+Future<pw.Widget> imageLoad(String imagePath) async {
+  final ByteData image = await rootBundle.load(imagePath);
+  final Uint8List imageData = image.buffer.asUint8List();
   return pw.Image(
-      pw.MemoryImage(imageData)
-  ) as Widget?;
+    pw.MemoryImage(imageData),
+  );
 }
 
 
 
-Future<void> createPDF(List<QuestionModel> questionsList) async {
+Future<void> createPDF(List<QuestionModel> questionsList, int index) async {
   final pdf = pw.Document();
   pw.Font font = await loadFont();
-  final ByteData image= await rootBundle.load('assets/pic.JPG');
-  Uint8List imageData= (image).buffer.asUint8List();
+   var pic=await rootBundle.loadString(questionsList[index].imagePath ?? '');
 
 
   // Ekleme: Sayfa oluşturun
@@ -83,11 +85,13 @@ Future<void> createPDF(List<QuestionModel> questionsList) async {
     pw.Page(
       // Ekleme: Sayfa içeriği oluşturun
       build: (pw.Context context) {
+
         return pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: [
             // Ekleme: Her bir soru için bir metin ekleyin
             for (var question in questionsList)
+
               pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: [
@@ -96,10 +100,13 @@ Future<void> createPDF(List<QuestionModel> questionsList) async {
                     question.premise!,
                   ):pw.SizedBox(),
                   ///resim
-                  pw.SizedBox(
-                      height: 150,
-                      child:  imageLoad('pic.JPG')
-                  ),
+                 (question.imagePath!=null) ? pw.Container(
+        height: 100,
+        child: pw.Image(pw.MemoryImage(File(pic).readAsBytesSync()))
+        )
+                  :
+                 pw.SizedBox(),
+
                   ///soru
                   pw.Text(
                     question.question,
