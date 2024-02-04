@@ -3,8 +3,9 @@ import 'package:pdfcreator/questions.dart';
 
 import 'acquisition_model.dart';
 class AcquisitionView extends StatelessWidget {
-  const AcquisitionView({Key? key, required this.acqList}) : super(key: key);
+  const AcquisitionView({Key? key, required this.acqList, required this.secnarioIndex}) : super(key: key);
   final List<AcquisitionModel> acqList;
+  final int secnarioIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,10 @@ class AcquisitionView extends StatelessWidget {
                   },
                   child: Card(
                     child: ListTile(
-                      title: Text('Kazanım Adı'),
+                      title: Text('Sorulacak Soru Sayısı: ${acqList[index].quesCount[secnarioIndex]}'),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Text('${acqList[index].acqName}'),
+                        child: Text(acqList[index].acqName),
                       ),
                     ),
                   ),

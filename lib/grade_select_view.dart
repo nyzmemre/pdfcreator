@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:pdfcreator/acquisition_data.dart';
 import 'package:pdfcreator/acquisition_model.dart';
 import 'package:pdfcreator/acquisition_view.dart';
+import 'package:pdfcreator/secnario_view.dart';
+import 'package:provider/provider.dart';
 
-class ClassSelect extends StatelessWidget {
-  const ClassSelect({Key? key, required this.lessonName}) : super(key: key);
+import 'create_exam_view_model.dart';
+
+class GradeSelect extends StatelessWidget {
+  const GradeSelect({Key? key, required this.lessonName}) : super(key: key);
   final String lessonName;
 
   @override
   Widget build(BuildContext context) {
-    AcquisitionData acquisitionData=AcquisitionData();
-    List<String> _classSelect=['5','6','7','8'];
-    List<List<AcquisitionModel>> _modelList=[acquisitionData.besTurkceAcqList,acquisitionData.altiTurkceAcqList,acquisitionData.yediTurkceAcqList, acquisitionData.sekizTurkceAcqList ];
+    List<String> _gradeSelect=['5','6','7','8'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Sınıf Seçiniz'),
@@ -20,20 +22,23 @@ class ClassSelect extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _classSelect.map((e) => InkWell(
+            children: _gradeSelect.map((e) => InkWell(
               onTap: (){
-                List<AcquisitionModel> selectedList=[];
+                ///sınıf seviyesinin indexini seçerek sonraki sayfadaki sayfadaki kazanım listesini getiriyorum.
+                int? selectedIndex;
                 switch(e){
                   case '5':
-                    selectedList=_modelList[0];
+                   selectedIndex=0;
                   case '6':
-                    selectedList=_modelList[1];
-                    case '7':
-                    selectedList=_modelList[2];
-                    case '8':
-                    selectedList=_modelList[3];
+                   selectedIndex=1;
+                  case '7':
+                  selectedIndex=2;
+                  case '8':
+                   selectedIndex=3;
                 }
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqList: selectedList,)));
+                Provider.of<CreateExamViewModel>(context, listen: false).addGrade(e);
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>SecnarioView(grade: selectedIndex ?? 0,)));
+                //Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqList: selectedList,)));
               },
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdfcreator/create_exam_view_model.dart';
 import 'package:pdfcreator/read_document.dart';
 import 'package:pdfcreator/secnario_view.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ void main() {
   runApp(MultiProvider(providers: [
     //ChangeNotifierProvider<ReadDocument>(create: (_) => ReadDocument()),
     ChangeNotifierProvider<ZimbirtiViewModel>(create: (_) => ZimbirtiViewModel()),
+    ChangeNotifierProvider<CreateExamViewModel>(create: (_) => CreateExamViewModel()),
 
   ], child: MyApp(),));
 }

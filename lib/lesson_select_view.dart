@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pdfcreator/class_select_view.dart';
+import 'package:pdfcreator/create_exam_view_model.dart';
+import 'package:pdfcreator/grade_select_view.dart';
 import 'package:pdfcreator/secnario_view.dart';
+import 'package:provider/provider.dart';
 
 class LessonSelectView extends StatelessWidget {
   const LessonSelectView({Key? key}) : super(key: key);
@@ -18,7 +20,9 @@ class LessonSelectView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: _lessonList.map((e) => InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>ClassSelect(lessonName: e,)));
+                Provider.of<CreateExamViewModel>(context, listen: false).addLesson(e);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>GradeSelect(lessonName: e,)));
+
               },
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
