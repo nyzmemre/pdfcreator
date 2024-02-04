@@ -21,7 +21,7 @@ class Homepage extends StatelessWidget {
             },
             child: Card(
               child: ListTile(
-                title: Text('1 Soru'),
+                title: Text('Kazanım Adı'),
                 subtitle: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text('${list[index]}'),
