@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/services.dart';
 
 class QuestionModel{
   final String question;
@@ -9,8 +6,5 @@ class QuestionModel{
 
   QuestionModel({this.premise, required this.question, this.imagePath});
 
-  Future<Uint8List> getImageData(String imagePath) async {
-    File imageFile = File(imagePath);
-    return await imageFile.readAsBytes();
-  }
+
 }

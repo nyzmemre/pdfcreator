@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdfcreator/secnario_view.dart';
 
 import 'homepage.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Homepage(),
+      home:  SecnarioView(),
     );
   }
 }

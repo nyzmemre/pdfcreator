@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdfcreator/question_model.dart';
 
@@ -87,6 +86,7 @@ Future<void> createPDF(List<QuestionModel> addQuesList, int curIndex) async {
   ///addQuesListe yazılan verilerde imagePath var mı yok mu kontrol ediyorum.
   ///bu kontrolde eğer image varsa indexini almam lazım.
   ///çünkü indexi almazsam pdf ye aktarırken kullanamam.
+  ///map e eklediğimde addQuesList'deki index ile imagePath'i Uint8List'e çevirip kullanabiliyorum.
   Map<int,Uint8List> picMap={};
   for(int i=0;i< addQuesList.length;i++) {
     if(addQuesList[i].imagePath!=null) {
