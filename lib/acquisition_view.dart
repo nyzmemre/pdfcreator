@@ -11,28 +11,35 @@ class AcquisitionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('PDF Creator'),
+          title: Text('Kazanım Seçiniz'),
         ),
         body: ListView.builder(
             itemCount: acqList.length,
             itemBuilder: (context, int index) {
-              return Padding(
+              return (acqList[index].quesCount[secnarioIndex]!=0) ? Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: InkWell(
-                  onTap: (){
+                  onTap: (acqList[index].quesCount[secnarioIndex]!=0) ? (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions()));
-                  },
+                  } : null,
                   child: Card(
+                    color: (acqList[index].quesCount[secnarioIndex]!=0) ? Colors.redAccent[300] : Colors.grey[250],
                     child: ListTile(
                       title: Text('Sorulacak Soru Sayısı: ${acqList[index].quesCount[secnarioIndex]}'),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(acqList[index].acqName),
                       ),
+                      trailing: Column(
+                        children: [
+                          Icon(Icons.navigate_next_rounded),
+                          Text('Seç')
+                        ],
+                      ),
                     ),
-                  ),
+                  ) ,
                 ),
-              );
+              ) : SizedBox();
             })
     );
   }
