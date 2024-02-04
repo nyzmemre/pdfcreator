@@ -18,7 +18,7 @@ List<AcquisitionModel> acqList=[];
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(10, (index) => InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView()));
+                //Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView()));
               },
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,

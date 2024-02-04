@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pdfcreator/questions.dart';
+
+import 'acquisition_model.dart';
 class AcquisitionView extends StatelessWidget {
-  const AcquisitionView({Key? key}) : super(key: key);
+  const AcquisitionView({Key? key, required this.acqList}) : super(key: key);
+  final List<AcquisitionModel> acqList;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,7 @@ class AcquisitionView extends StatelessWidget {
           title: Text('PDF Creator'),
         ),
         body: ListView.builder(
-            itemCount: list.length,
+            itemCount: acqList.length,
             itemBuilder: (context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -23,7 +26,7 @@ class AcquisitionView extends StatelessWidget {
                       title: Text('Kazanım Adı'),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Text('${list[index]}'),
+                        child: Text('${acqList[index].acqName}'),
                       ),
                     ),
                   ),

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pdfcreator/read_document.dart';
 import 'package:pdfcreator/secnario_view.dart';
+import 'package:provider/provider.dart';
 
 import 'homepage.dart';
+import 'lesson_select_view.dart';
+import 'ziimbirti_viewmodel.dart';
 
 void main() {
 
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    //ChangeNotifierProvider<ReadDocument>(create: (_) => ReadDocument()),
+    ChangeNotifierProvider<ZimbirtiViewModel>(create: (_) => ZimbirtiViewModel()),
+
+  ], child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  SecnarioView(),
+      home:  LessonSelectView(),
     );
   }
 }
