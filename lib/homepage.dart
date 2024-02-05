@@ -17,7 +17,7 @@ class Homepage extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions()));
+             // Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions()));
             },
             child: Card(
               child: ListTile(

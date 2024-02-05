@@ -1,34 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:pdfcreator/acquisition_data.dart';
 import 'package:pdfcreator/questions.dart';
 
 import 'acquisition_model.dart';
 class AcquisitionView extends StatelessWidget {
-  const AcquisitionView({Key? key, required this.acqList, required this.secnarioIndex}) : super(key: key);
-  final List<AcquisitionModel> acqList;
+  const AcquisitionView({Key? key, required this.acqData, required this.secnarioIndex}) : super(key: key);
+  final List<AcquisitionModel> acqData;
   final int secnarioIndex;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Kazanım Seçiniz'),
         ),
         body: ListView.builder(
-            itemCount: acqList.length,
+            itemCount: acqData.length,
             itemBuilder: (context, int index) {
-              return (acqList[index].quesCount[secnarioIndex]!=0) ? Padding(
+                 return (acqData[index].secnarioQuessStatus[secnarioIndex]!=0) ? Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: InkWell(
-                  onTap: (acqList[index].quesCount[secnarioIndex]!=0) ? (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions()));
+                  onTap: (acqData[index].secnarioQuessStatus[secnarioIndex]!=0) ? (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions(
+                      quesList: acqData[index].questions,
+                    )));
                   } : null,
                   child: Card(
-                    color: (acqList[index].quesCount[secnarioIndex]!=0) ? Colors.redAccent[300] : Colors.grey[250],
+                    color: (acqData[index].secnarioQuessStatus[secnarioIndex]!=0) ? Colors.redAccent[300] : Colors.grey[250],
                     child: ListTile(
-                      title: Text('Sorulacak Soru Sayısı: ${acqList[index].quesCount[secnarioIndex]}'),
+                      title: Text('Sorulacak Soru Sayısı: ${acqData[index].secnarioQuessStatus[secnarioIndex]}'),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Text(acqList[index].acqName),
+                        child: Text(acqData[index].acqName),
                       ),
                       trailing: Column(
                         children: [
@@ -45,6 +49,7 @@ class AcquisitionView extends StatelessWidget {
   }
 }
 
+/*
 
 List<String> list=["T.5.3.5. Bağlamdan yararlanarak bilmediği kelime ve kelime gruplarının anlamını tahmin eder.",
   "T.5.3.6. Deyim ve atasözlerinin metne katkısını belirler.",
@@ -62,4 +67,4 @@ List<String> list=["T.5.3.5. Bağlamdan yararlanarak bilmediği kelime ve kelime
   "T.5.3.31. Okudukları ile ilgili çıkarımlarda bulunur.",
   "T.5.3.32. Metindeki söz sanatlarını tespit eder.",
   "T.5.3.33.Okuduğu metindeki gerçek, mecaz ve terim anlamlı sözcükleri ayırt eder.",
-  "T.5.3.34. Grafik, tablo ve çizelgeyle sunulan bilgilere ilişkin soruları cevaplar.",];
+  "T.5.3.34. Grafik, tablo ve çizelgeyle sunulan bilgilere ilişkin soruları cevaplar.",];*/

@@ -1,6 +1,9 @@
+import 'question_model.dart';
+
 class AcquisitionModel{
   String acqName;
-  List<int> quesCount;
+  List<int> secnarioQuessStatus;
+  List<QuestionModel> questions;
 
-  AcquisitionModel({required this.acqName, required this.quesCount});
+  AcquisitionModel({required this.acqName, required this.secnarioQuessStatus, required this.questions});
 }

@@ -9,7 +9,7 @@ import 'create_exam_view_model.dart';
 class SecnarioView extends StatelessWidget {
    SecnarioView({Key? key, required this.grade}) : super(key: key);
    final int grade;
-List<AcquisitionModel> acqList=[];
+
   @override
   Widget build(BuildContext context) {
     AcquisitionData acquisitionData=AcquisitionData();
@@ -26,7 +26,7 @@ List<AcquisitionModel> acqList=[];
             children: List.generate(10, (index) => InkWell(
               onTap: (){
                 Provider.of<CreateExamViewModel>(context, listen: false).addSecnario(index.toString());
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqList: _modelList[grade], secnarioIndex: index,)));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqData: _modelList[grade], secnarioIndex: index,)));
               },
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,

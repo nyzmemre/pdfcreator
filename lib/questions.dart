@@ -7,7 +7,8 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdfcreator/question_model.dart';
 
 class Questions extends StatelessWidget {
-  Questions({Key? key}) : super(key: key);
+  Questions({Key? key, required this.quesList}) : super(key: key);
+  final List<QuestionModel> quesList;
   List<QuestionModel> addPdfList = [];
   int curIndex = 0;
 
@@ -22,13 +23,13 @@ class Questions extends StatelessWidget {
           ListView.builder(
               shrinkWrap: true,
               physics: ScrollPhysics(),
-              itemCount: questionList.length,
+              itemCount: quesList.length,
               itemBuilder: (context, int index) {
                 return ListTile(
-                  subtitle: Text(questionList[index].question),
+                  subtitle: Text(quesList[index].question),
                   trailing: IconButton(
                       onPressed: () {
-                        addPdfList.add(questionList[index]);
+                        addPdfList.add(quesList[index]);
                         curIndex = index;
                       },
                       icon: const Icon(
@@ -48,7 +49,7 @@ class Questions extends StatelessWidget {
   }
 }
 
-List<QuestionModel> questionList = [
+/*List<QuestionModel> questionList = [
   QuestionModel(
       question:
           "Kitabın Serüveni” şiiri ile ilgili iki soru yazınız. (20 Puan,  10+10)"),
@@ -61,7 +62,7 @@ List<QuestionModel> questionList = [
     question:
         "Sizce, ağaç kitaba dönüşmekten memnun mudur? Bunu şiirdeki hangi ifadelerden çıkarıyorsunuz? (10 Puan)",
   )
-];
+];*/
 
 Future<pw.Font> loadFont() async {
   final fontData = await rootBundle.load('assets/times.ttf');
