@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdfcreator/create_exam_view_model.dart';
 import 'package:pdfcreator/grade_select_view.dart';
+import 'package:pdfcreator/product/utility/constants/list_constants.dart';
+import 'package:pdfcreator/product/utility/constants/text_constants.dart';
 import 'package:pdfcreator/secnario_view.dart';
 import 'package:provider/provider.dart';
 
@@ -9,16 +11,15 @@ class LessonSelectView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> _lessonList=['Türkçe', 'Matematik', 'Fen ve Teknoloji', 'Sosyal Bilgiler','İngilizce', 'Din Kültürü ve Ahlak Bilgsi'];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ders Seçiniz'),
+        title: const Text(TextConstants.selectLessonTEXT),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _lessonList.map((e) => InkWell(
+            children: ListConstants.lessonListCONST.map((e) => InkWell(
               onTap: (){
                 Provider.of<CreateExamViewModel>(context, listen: false).addLesson(e);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=>GradeSelect(lessonName: e,)));

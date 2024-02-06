@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdfcreator/acquisition_view.dart';
+import 'package:pdfcreator/product/utility/constants/text_constants.dart';
 import 'package:provider/provider.dart';
 
 import 'acquisition_data.dart';
@@ -17,7 +18,7 @@ class SecnarioView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Senaryo Seçiniz'),
+        title: const Text(TextConstants.selectSecnarioTEXT),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -31,7 +32,7 @@ class SecnarioView extends StatelessWidget {
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               child: Card(
-                child: Padding(padding: EdgeInsets.all(15),child: Text('${index+1}. Senaryo'),),
+                child: Padding(padding: EdgeInsets.all(15),child: Text('${index+1}${TextConstants.dotSecnarioTEXT}'),),
               ),
             )),
           ),

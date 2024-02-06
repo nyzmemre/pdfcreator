@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pdfcreator/acquisition_data.dart';
 import 'package:pdfcreator/acquisition_model.dart';
 import 'package:pdfcreator/acquisition_view.dart';
+import 'package:pdfcreator/product/utility/constants/list_constants.dart';
+import 'package:pdfcreator/product/utility/constants/text_constants.dart';
 import 'package:pdfcreator/secnario_view.dart';
 import 'package:provider/provider.dart';
 
@@ -13,16 +15,16 @@ class GradeSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> _gradeSelect=['5','6','7','8'];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sınıf Seçiniz'),
+        title: const Text(TextConstants.selectGradeTEXT),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _gradeSelect.map((e) => InkWell(
+            children: ListConstants.gradeListCONST.map((e) => InkWell(
               onTap: (){
                 ///sınıf seviyesinin indexini seçerek sonraki sayfadaki sayfadaki kazanım listesini getiriyorum.
                 int? selectedIndex;
@@ -45,7 +47,7 @@ class GradeSelect extends StatelessWidget {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width*.4,
                 child: Card(
-                  child: Padding(padding: EdgeInsets.all(15),child: Text('$e. Sınıf', textAlign: TextAlign.center,),),
+                  child: Padding(padding: const EdgeInsets.all(15),child: Text('$e${TextConstants.dotGradeTEXT}', textAlign: TextAlign.center,),),
                 ),
               ),
             )).toList(),

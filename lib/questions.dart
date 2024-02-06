@@ -4,7 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:pdfcreator/pdf_view_model.dart';
+import 'package:pdfcreator/product/utility/constants/text_constants.dart';
 import 'package:pdfcreator/question_model.dart';
+import 'package:provider/provider.dart';
 
 class Questions extends StatelessWidget {
   Questions({Key? key, required this.quesList}) : super(key: key);
@@ -16,34 +19,39 @@ class Questions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Soru Seç'),
+        title: const Text(TextConstants.quesSelectTEXT),
       ),
-      body: Column(
-        children: [
-          ListView.builder(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemCount: quesList.length,
-              itemBuilder: (context, int index) {
-                return ListTile(
-                  subtitle: Text(quesList[index].question),
-                  trailing: IconButton(
-                      onPressed: () {
-                        addPdfList.add(quesList[index]);
-                        curIndex = index;
-                      },
-                      icon: const Icon(
-                        Icons.add_circle,
-                        color: Colors.green,
-                      )),
-                );
-              }),
-          ElevatedButton(
-              onPressed: () async {
-                await createPDF(addPdfList, curIndex);
-              },
-              child: Text('PDF Oluştur'))
-        ],
+      body: Consumer<PdfViewModel>(
+        builder: (context, pdfViewModel, _) {
+          return Column(
+            children: [
+              ListView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemCount: quesList.length,
+                  itemBuilder: (context, int index) {
+                    return ListTile(
+                      subtitle: Text(quesList[index].question),
+                      trailing: IconButton(
+                          onPressed: () {
+
+                            pdfViewModel.addQuesList(quesList[index]);
+                            curIndex = index;
+                          },
+                          icon: const Icon(
+                            Icons.add_circle,
+                            color: Colors.green,
+                          )),
+                    );
+                  }),
+              ElevatedButton(
+                  onPressed: () async {
+                    await createPDF(addPdfList, curIndex);
+                  },
+                  child: const Text(TextConstants.createPdfTEXT))
+            ],
+          );
+        }
       ),
     );
   }
