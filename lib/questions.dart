@@ -9,9 +9,22 @@ import 'package:pdfcreator/product/utility/constants/text_constants.dart';
 import 'package:pdfcreator/question_model.dart';
 import 'package:provider/provider.dart';
 
+///YAPILACAKLAR
+///elimde selectQuesCount var. bu kaç soru eklenebileceğini söylüyor.
+///butona tıklama durumlarını kontrol etmeliyim. eğer bir kez tıklandıysa soru eklenmeli
+///eğer eklenecek soru sayısına ulaşıldıysa diğer butonlar pasif olmalı.
+///Eğer eklenen soru çıkarılırsa diğer butonlar tekrar aktifleşmeli.
+///PDF Oluştur butonu yerine önizleme butonu eklenebilir. bu sayfadan sonra
+///önce önizleme sayfasına geçilip soru sıralamaları ayarlanabilir. veya ekranda kaçıncı soru
+///olarak eklensin diye seçenek çıkabilir. eklenecek toplam soru sayısı belli. liste uzunluğu
+///toplam soru sayısına ulaşmadan zaten pdf oluşturma aşamasına geçemem. önizleme olursa
+///istersem soru sıralamalarını değiştirtebilirim.
+
+
 class Questions extends StatelessWidget {
-  Questions({Key? key, required this.quesList}) : super(key: key);
+  Questions({Key? key, required this.quesList, required this.selectQuesCount}) : super(key: key);
   final List<QuestionModel> quesList;
+  final int selectQuesCount;
   List<QuestionModel> addPdfList = [];
   int curIndex = 0;
 

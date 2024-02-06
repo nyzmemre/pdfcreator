@@ -30,6 +30,7 @@ class AcquisitionView extends StatelessWidget {
                   onTap: (acqData[index].secnarioQuessStatus[secnarioIndex]!=0) ? (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>Questions(
                       quesList: acqData[index].questions,
+                      selectQuesCount: acqData[index].secnarioQuessStatus[secnarioIndex],
                     )));
                   } : null,
                   child: Card(
