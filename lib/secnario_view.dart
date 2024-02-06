@@ -25,9 +25,16 @@ class SecnarioView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(10, (index) => InkWell(
-              onTap: (){
-                Provider.of<CreateExamViewModel>(context, listen: false).addSecnario(index.toString());
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqData: _modelList[grade], secnarioIndex: index,)));
+              onTap: ()async {
+                var examProvider=Provider.of<CreateExamViewModel>(context, listen: false);
+                examProvider.addSecnario(index.toString());
+                await examProvider.createAcqList(_modelList[grade], index);
+                if(examProvider.acqListWithSelectSecnario!=null)
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>AcquisitionView(acqData: examProvider.acqListWithSelectSecnario!, secnarioIndex: index,)));
+                }else{
+                  print('Liste Boş');
+                }
               },
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,

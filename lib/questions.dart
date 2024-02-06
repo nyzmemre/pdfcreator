@@ -27,7 +27,7 @@ class Questions extends StatelessWidget {
             children: [
               ListView.builder(
                   shrinkWrap: true,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   itemCount: quesList.length,
                   itemBuilder: (context, int index) {
                     return ListTile(

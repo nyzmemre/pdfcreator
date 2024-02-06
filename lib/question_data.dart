@@ -49,6 +49,14 @@ List<QuestionModel> t637=[
   )
 ];
 
+List<QuestionModel> t638=[
+  QuestionModel(question: "t638 Kitabın Serüveni” şiiri ile ilgili iki soru yazınız. (20 Puan,  10+10)"),
+  QuestionModel(imagePath: 'assets/firsat.png', question: "t637 Takaşi takatako"),
+  QuestionModel(premise: "Öncül Laaaaa",question: "t637 Okuduğunuz şiirin kahramanı kimdir? (10 Puan)"),
+  QuestionModel(imagePath: "assets/pic.JPG",question:"t637 Sizce, ağaç kitaba dönüşmekten memnun mudur? Bunu şiirdeki hangi ifadelerden çıkarıyorsunuz? (10 Puan)",
+  )
+];
+
 ///7.sinif
     List<QuestionModel> t735=[
   QuestionModel(question: "t735 Kitabın Serüveni” şiiri ile ilgili iki soru yazınız. (20 Puan,  10+10)"),

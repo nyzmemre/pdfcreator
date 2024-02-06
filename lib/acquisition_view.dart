@@ -10,10 +10,16 @@ class AcquisitionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text(TextConstants.selectAcquisitionTEXT),
+          actions: [
+            IconButton(onPressed: (){
+
+              print(acqData.length);
+              print(acqData[0].acqName);
+            }, icon: Icon(Icons.add))
+          ],
         ),
         body: ListView.builder(
             itemCount: acqData.length,

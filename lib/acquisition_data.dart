@@ -3,8 +3,8 @@ import 'package:pdfcreator/question_data.dart';
 
 
 class AcquisitionData{
-  final List<AcquisitionModel> _besTurkceAcqList=[
 
+  final List<AcquisitionModel> _besTurkceAcqList=[
             AcquisitionModel(acqName: "T.5.3.5. Bağlamdan yararlanarak bilmediği kelime ve kelime gruplarının anlamını tahmin eder.", secnarioQuessStatus: [1,1,1,0,0,0,0,1,0,1],questions: t535),
             AcquisitionModel(acqName: "T.5.3.6. Deyim ve atasözlerinin metne katkısını belirler.", secnarioQuessStatus: [1,0,1,1,0,1,0,0,0,1],questions: t536),
             AcquisitionModel(acqName: "T.5.3.7. Kelimelerin eş anlamlılarını bulur.", secnarioQuessStatus: [1,0,0,1,0,0,1,0,0,0],questions: t537),
@@ -41,7 +41,7 @@ class AcquisitionData{
           AcquisitionModel(acqName: "T.6.3.5. Bağlamdan yararlanarak bilmediği kelime ve kelime gruplarının anlamını tahmin eder.", secnarioQuessStatus: [1,1,1,0,0,0,0,1,0,1],questions: t635),
           AcquisitionModel(acqName: "T.6.3.6. Deyim ve atasözlerinin metne katkısını belirler.", secnarioQuessStatus: [1,0,1,1,0,1,0,0,0,1],questions: t636),
           AcquisitionModel(acqName: "T.6.3.7. Kelimelerin eş anlamlılarını bulur.", secnarioQuessStatus: [1,0,0,1,0,0,1,0,0,0],questions: t637),
-          AcquisitionModel(acqName: "T.6.3.8. Kelimelerin zıt anlamlılarını bulur.", secnarioQuessStatus: [0,1,0,0,0,0,1,0,0,1],questions: t635),
+          AcquisitionModel(acqName: "T.6.3.8. Kelimelerin zıt anlamlılarını bulur.", secnarioQuessStatus: [0,1,0,0,0,0,1,0,0,1],questions: t638),
           AcquisitionModel(acqName: "T.6.3.9. Eş sesli kelimelerin anlamlarını ayırt eder.", secnarioQuessStatus: [0,0,0,0,1,0,0,0,0,1],questions: t635),
           AcquisitionModel(acqName: "T.6.3.10. Kökleri ve ekleri ayırt eder.", secnarioQuessStatus: [1,1,2,1,1,1,1,0,1,1],questions: t635),
           AcquisitionModel(acqName: "T.6.3.11. Yapım ekinin işlevlerini açıklar.", secnarioQuessStatus: [0,0,0,0,0,0,0,0,0,0],questions: t635),
